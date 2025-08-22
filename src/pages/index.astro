@@ -1,16 +1,64 @@
 ---
+import MainLayout from '../layouts/MainLayout.astro';
+import ProductSection from '../components/ui/ProductSection.astro';
+import OrderManager from '../components/core/OrderManager.jsx';
+import productsData from '../data/products.json';
 
+const allImages = import.meta.glob('/src/assets/images/*.{jpeg,jpg,png,webp}');
+
+const productsWithImages = await Promise.all(
+  productsData.map(async (product) => {
+    const imageObjects = await Promise.all(
+      product.images.map(async (imageName) => {
+        const imagePath = `/src/assets/images/${imageName}`;
+        if (allImages[imagePath]) {
+          const { default: image } = await allImages[imagePath]();
+          return image;
+        }
+        return null;
+      })
+    );
+    return { ...product, imageObjects: imageObjects.filter(Boolean) };
+  })
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style>
+	.hero {
+		text-align: center;
+		padding: 1.6rem 0;
+	}
+	.hero h1 {
+		font-size: 3.5rem;
+		color: var(--color-heading);
+		margin-bottom: 0.5rem;
+		font-weight: 700;
+	}
+	.hero p {
+		font-size: 1.2rem;
+		color: var(--color-accent);
+		margin-bottom: 2rem;
+		font-style: italic;
+	}
+	.products-container {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem; /* Espacio entre secciones de productos */
+	}
+</style>
+
+<MainLayout title="Ascend - Inicio">
+
+	<section class="hero">
+		<h1>Catalogo</h1>
+	</section>
+
+	<div class="products-container">
+		{productsWithImages.map(product => (
+			<ProductSection product={product} />
+		))}
+	</div>
+	
+	<OrderManager client:load />
+
+</MainLayout>

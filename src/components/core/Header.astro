@@ -1,0 +1,31 @@
+---
+import Logo from "../branding/Logo.astro";
+---
+
+<header>
+    <div class="header-container">
+        <div class="logo-wrapper">
+            <a href="/" aria-label="Página de inicio de Ascend">
+                <Logo />
+            </a>
+        </div>
+        <nav>
+            <a href="#order-section">Ver Pedido</a>
+            <button id="theme-toggle" class="theme-toggle-button">Tema</button>
+        </nav>
+    </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.getElementById('theme-body');
+
+    if (themeToggle && body) {
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light');
+        body.classList.toggle('dark');
+      });
+    }
+  });
+</script>

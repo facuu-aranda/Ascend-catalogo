@@ -1,0 +1,86 @@
+---
+import AddToOrderControls from './AddToOrderControls.jsx';
+import ImageCarousel from './ImageCarousel.jsx';
+
+const { product } = Astro.props;
+---
+<style>
+    .product-section {
+        /* Efecto de vidrio esmerilado */
+        background-color: rgba(var(--color-surface-rgb), 0.5);
+        backdrop-filter: blur(20px);
+        margin-block: 1rem;
+        border: 1px solid var(--color-border);
+        border-radius: 24px; /* Bordes más suaves, estilo iOS */
+        
+        padding: 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .details h2 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    .details .description {
+        font-size: 1.1rem;
+        color: var(--color-text);
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+    }
+    .details .price {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--color-heading);
+        margin-bottom: 2rem;
+    }
+    
+    .carousel-container {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .suggestedPrice {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--color-accent);
+        font-style: italic;
+        margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+        .product-section {
+            grid-template-columns: 1fr;
+            padding: 2rem;
+        }
+        .details h2 {
+            font-size: 2.2rem;
+        }
+    }
+</style>
+
+<section class="product-section">
+    <div class="carousel-container">
+        <ImageCarousel images={product.imageObjects} client:load />
+    </div>
+    <div class="details">
+        <h2>{product.name}</h2>
+        <p class="description">{product.description}</p>
+        <p class="price">
+        <span>${product.price.toFixed(2)}</span>
+        <span class="suggestedPrice">Precio sugerido: ${product.suggestedPrice.toFixed(2)}
+        </span>
+        </p>
+        <AddToOrderControls product={product} client:visible />
+    </div>
+</section> 

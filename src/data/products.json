@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "Hoodie de Superación",
+    "description": "Diseñado para la comodidad y la confianza, este hoodie te acompaña en cada desafío, recordándote la fortaleza que llevas dentro.",
+    "price": 89.99,
+    "suggestedPrice": 125.00,
+    "images": [
+      "hoodie-1.jpg",
+      "hoodie-2.jpg",
+      "hoodie-3.jpg"
+    ],
+    "availableSizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": 2,
+    "name": "Camiseta Estoica",
+    "description": "Un recordatorio diario de que la virtud es el único bien. Viste con propósito y enfrenta la vida con serenidad y coraje.",
+    "price": 20.99,
+    "suggestedPrice": 45.00,
+    "images": [
+      "camiseta-1.jpg",
+      "camiseta-2.jpg"
+    ],
+    "availableSizes": ["S", "M", "L"]
+  },
+  {
+    "id": 3,
+    "name": "Gorra Ascend",
+    "description": "Enfoca tu visión y protege tu camino. La gorra Ascend es más que un accesorio, es un símbolo de tu ascenso constante.",
+    "price": 10.00,
+    "suggestedPrice": 20.00,
+    "images": [
+      "gorra-1.jpg",
+      "gorra-2.jpg"
+    ],
+    "availableSizes": ["Único"]
+  }
+]

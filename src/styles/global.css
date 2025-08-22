@@ -1,0 +1,245 @@
+/* 1. Definición de Variables de Marca */
+:root {
+  --color-background-rgb: 32, 56, 80;
+  --color-surface-rgb: 44, 73, 105;
+  --color-text: #F4F1E9;
+  --color-text-secondary: #A0A09D; /* Gris para texto secundario (mejorado) */
+  --color-heading: #FFFFFF;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-accent: #A0A09D;
+}
+
+body.light {
+  --color-background-rgb: 244, 241, 233;
+  --color-surface-rgb: 255, 255, 255;
+  --color-text: #203850;
+  --color-text-secondary: #777777; /* Gris más oscuro para tema claro */
+  --color-heading: #101820;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-accent: #777777;
+}
+
+/* 2. Reseteo y Estilos Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Carlito', sans-serif;
+  background-color: rgb(var(--color-background-rgb));
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 3. Estilos de Tipografía */
+h1, h2, h3 {
+  color: var(--color-heading);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+/* 4. Estilos de Componentes (Glassmorphism) */
+header {
+  position: sticky;
+  top: 1rem; /* Despegado del borde superior */
+  z-index: 50;
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  background-color: rgba(var(--color-surface-rgb), 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px; /* Bordes suaves */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+}
+.logo-wrapper {
+  width: 120px;
+  color: var(--color-heading);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 7. Estilos Generales para Componentes (Liquid Glass) */
+button, .button {
+  display: inline-block;
+  background-color: rgba(var(--color-button-bg-rgb), 0.9);
+  color: var(--color-button-text);
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-family-body);
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  backdrop-filter: blur(8px); /* Efecto de desenfoque */
+}
+
+button:hover, .button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  border-color: #cccccc;
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+nav a:hover {
+    background-color: rgba(var(--color-accent-rgb), 0.7);
+    color: var(--color-background);
+}
+.theme-toggle-button {
+    background: none;
+    color: var(--color-text);
+    border: 1px solid var(--color-accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+.theme-toggle-button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+}
+
+#order-section {
+    background-color: rgba(var(--color-surface-rgb), 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin-top: 4rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+#order-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+}
+
+#order-section .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+    gap: 1rem;
+}
+#order-section .item-details p {
+    margin: 0;
+}
+#order-section .item-details .item-name {
+    font-weight: bold;
+    color: var(--color-heading);
+}
+#order-section .item-details .item-meta {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+}
+
+#order-section .item-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+#order-section .item-price {
+    font-weight: bold;
+    color: var(--color-heading);
+}
+#order-section .remove-btn {
+    background-color: rgba(220, 53, 69, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 1.2rem;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+#order-section .remove-btn:hover {
+    background-color: rgba(220, 53, 69, 1);
+}
+
+#order-section .order-total {
+    text-align: right;
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-heading);
+}
+
+#order-section .customer-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+}
+#order-section .customer-form h3 {
+    grid-column: 1 / -1;
+    font-size: 1.5rem;
+}
+#order-section .customer-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: rgba(var(--color-background-rgb), 0.7);
+    color: var(--color-text);
+    font-size: 1rem;
+}
+#order-section .customer-form input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+#order-section .order-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}

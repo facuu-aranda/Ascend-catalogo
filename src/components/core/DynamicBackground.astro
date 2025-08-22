@@ -1,0 +1,66 @@
+---
+// src/components/core/DynamicBackground.astro
+---
+<style>
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        z-index: -1; /* Se asegura que esté detrás de todo */
+    }
+
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.5;
+        filter: blur(80px); /* Desenfoque extremo para crear el efecto líquido */
+        will-change: transform;
+    }
+
+    /* Definimos los colores y tamaños de cada blob */
+    .blob1 {
+        width: 450px;
+        height: 450px;
+        background: #485C70; /* Color secundario */
+        animation: move 25s infinite alternate ease-in-out;
+    }
+
+    .blob2 {
+        width: 350px;
+        height: 350px;
+        background: #A0A09D; /* Color de acento */
+        animation: move 30s infinite alternate ease-in-out -5s; /* Empieza con retraso */
+    }
+    
+    .blob3 {
+        width: 250px;
+        height: 250px;
+        background: var(--color-surface);
+        animation: move 20s infinite alternate ease-in-out -10s;
+    }
+
+    /* Animación de movimiento orgánico */
+    @keyframes move {
+        from {
+            transform: translate(10vw, -20vh) scale(1);
+        }
+        to {
+            transform: translate(70vw, 80vh) scale(1.2);
+        }
+    }
+
+    /* En tema claro, los blobs son más sutiles */
+    body.light .blob {
+        opacity: 0.25;
+        filter: blur(100px);
+    }
+</style>
+
+<div class="background-container">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+</div>

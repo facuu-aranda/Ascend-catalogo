@@ -9,6 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.3"
+    "@astrojs/preact": "^4.1.0",
+    "@nanostores/preact": "^1.0.0",
+    "astro": "^5.13.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
+    "nanostores": "^1.0.1"
   }
 }
